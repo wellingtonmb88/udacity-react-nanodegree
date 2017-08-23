@@ -5,20 +5,20 @@ class BookshelfChanger extends Component {
 
     static propTypes = {
         bookState: PropTypes.string.isRequired,
-        updateShelfState: PropTypes.func.isRequired
+        onShelfStateChanged: PropTypes.func.isRequired
     }
 
     state = {
         state : 'none'
     }
 
-    componentWillMount() {
+    componentWillMount() { 
         this.setState({state: this.props.bookState});
     }
 
     change = (event) => {
         this.setState({state: event.target.value});
-        this.props.updateShelfState(event.target.value)
+        this.props.onShelfStateChanged(event.target.value)
     }
  
     render(){

@@ -6,11 +6,19 @@ class Book extends Component {
 
     static propTypes = {
         book: PropTypes.object.isRequired,
-        updateBookShelfState: PropTypes.func.isRequired
+        onBookShelfStateChanged: PropTypes.func.isRequired
     }
 
     updateShelfState = (state) => { 
-        this.props.updateBookShelfState(this.props.book, state);
+        this.props.onBookShelfStateChanged(this.props.book, state);
+    }
+
+    getThumbnail = (book) => {
+        if(book.imageLinks && book.imageLinks.thumbnail) {
+            return `url("${book.imageLinks.thumbnail}")`
+        } else { 
+            return "./icons/defbookcover.jpg"
+        }
     }
 
     render() {
@@ -20,15 +28,18 @@ class Book extends Component {
         return ( 
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}/>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: this.getThumbnail(book) }}/>
                     <BookshelfChanger 
-                        bookState={book.shelf}
-                        updateShelfState={this.updateShelfState}/>
+                        bookState={(book.shelf ? book.shelf : "none")}
+                        onShelfStateChanged={this.updateShelfState}/>
                 </div>
                 <div className="book-title">{book.title}</div>
-                {book.authors.map( (author) => (
+                
+                { book.authors ? (book.authors.map( (author) => (
                     <div key={author} className="book-authors">{author}</div>
-                ))}
+                    ))
+                ): (<div />)
+                }
             </div>             
         );
     }

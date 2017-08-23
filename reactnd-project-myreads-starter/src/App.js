@@ -4,7 +4,9 @@ import './App.css'
 import Bookshelf from './Bookshelf';
 import SearchBooksBar from './SearchBooksBar';
 import SearchBooksResults from './SearchBooksResults';
-import If from './If'; 
+import If from './If';
+
+const Loading = require('react-loading-animation');
 
 const ShelfCategory = { 
   CurrentlyReading:  "currentlyReading",
@@ -22,8 +24,10 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     loading: true,
+    showLoadingSearchResult: false,
     showSearchPage: false,
     books: [],
+    searchedBooks: [],
     wantToReadList: [],
     currentlyReadingList: [],
     readList: []
@@ -41,101 +45,87 @@ class BooksApp extends React.Component {
     this.setState({ wantToReadList: books.filter((book) => book.shelf === ShelfCategory.WantToRead) });
     this.setState({ readList: books.filter((book) => book.shelf === ShelfCategory.Read) });
     this.setState({ books });
+  };
+
+  updateSearchedBooks = (searchedBooks) => { 
+    this.setState({ searchedBooks });
+  };
+
+  showLoadingSearchResult = (shouldShow) => { 
+    this.setState({ showLoadingSearchResult: shouldShow });
+  };
+
+  searchBooks = (query) => {   
+    this.showLoadingSearchResult(true);
+    BooksAPI.search(query, 10).then((books) => {  
+      this.showLoadingSearchResult(false);
+      if(books && books.length > 0) { 
+        this.updateSearchedBooks(books) 
+      }
+    })
+  }; 
+  
+  handleBookUpdate = (book, shelfState) => {  
+    BooksAPI.update(book, shelfState);
   }
 
-  // updateShelves = (shelves) => {
+  handleBookShelfStateUpdate = (book, shelfState) => {     
+    let targetBook = this.state.books.filter((b) => b.id === book.id)[0]
+    targetBook.shelf = shelfState;
 
-  //   const tempWantToReadList = [];
-  //   const tempCurrentlyReadingList = [];
-  //   const tempReadList = [];
-
-  //   shelves.currentlyReading.forEach( (bookId) => {
-  //     this.state.books.filter((book) => book.id === bookId)
-  //     .forEach((book) => {
-  //       book.shelf = ShelfCategory.CurrentlyReading
-  //       tempCurrentlyReadingList.push(book)
-  //     })
-  //   });
-
-  //   shelves.wantToRead.forEach( (bookId) => {
-  //     this.state.books.filter((book) => book.id === bookId)
-  //     .forEach((book) => {
-  //       book.shelf = ShelfCategory.WantToRead
-  //       tempWantToReadList.push(book)
-  //     })
-  //   });
-
-  //   shelves.read.forEach( (bookId) => { 
-  //     this.state.books.filter((book) => book.id === bookId)
-  //     .forEach((book) => {
-  //       book.shelf = ShelfCategory.Read
-  //       tempReadList.push(book)
-  //     })
-  //   });
-    
-  //   this.setState({ currentlyReadingList: tempCurrentlyReadingList });
-  //   this.setState({ wantToReadList: tempWantToReadList });
-  //   this.setState({ readList: tempReadList })
-  // }
-
-  handleBookShelfStateSubmit = (book, shelfState) => {    
-    const tempBooks = []
-    this.state.books.forEach(book => {
-      tempBooks.push(Object.assign({}, book));
-    });
-
-    const filteredBooks = tempBooks.filter((b) => b.id === book.id);
+    let bookList = this.state.books.filter((b) => b.id !== book.id);
  
-    filteredBooks.forEach((book) => { 
-      book.shelf = shelfState 
-    });
+    bookList.push(targetBook);
 
-    this.updateBooks(tempBooks)
+    this.updateBooks(bookList);
 
-    BooksAPI.update(book, shelfState)
+    BooksAPI.update(book, shelfState);
   }
 
   render() {
 
-    const { loading, wantToReadList, currentlyReadingList, readList } = this.state;
+    const { loading, wantToReadList, currentlyReadingList, readList, searchedBooks, showLoadingSearchResult } = this.state;
 
     return (
       <div className="app">
         {this.state.showSearchPage ? (
           <div className="search-books">
-            <SearchBooksBar />
-            <SearchBooksResults />
+            <SearchBooksBar onSearchBooks={this.searchBooks}/>
+
+            <Loading isLoading={showLoadingSearchResult} width='100px' height='100px'>
+              <SearchBooksResults 
+                  books={searchedBooks}
+                  handleBookUpdate={this.handleBookUpdate}/>
+            </Loading>
           </div>
         ) : (
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <div className="list-books-content"> 
-              {loading ? (
-                  <p>Loading</p>
-                ):(
+            <div className="list-books-content">  
+                <Loading isLoading={loading} width='100px' height='100px'>
                   <div>
                     <If test={currentlyReadingList.length > 0}> 
                       <Bookshelf  
-                          handleBookShelfStateSubmit={this.handleBookShelfStateSubmit}
+                        handleBookShelfStateUpdate={this.handleBookShelfStateUpdate}
                           books={currentlyReadingList} 
                           bookshelfTitle="Currently Reading"/> 
                     </If>
                     <If test={wantToReadList.length > 0}>
                       <Bookshelf  
-                          handleBookShelfStateSubmit={this.handleBookShelfStateSubmit}
+                        handleBookShelfStateUpdate={this.handleBookShelfStateUpdate}
                           books={wantToReadList}  
                           bookshelfTitle="Want to Read"/> 
                     </If>
                     <If test={readList.length > 0}> 
                       <Bookshelf  
-                        handleBookShelfStateSubmit={this.handleBookShelfStateSubmit}
+                        handleBookShelfStateUpdate={this.handleBookShelfStateUpdate}
                         books={readList} 
                         bookshelfTitle="Read"/>  
                     </If> 
                   </div>
-                  )}
+                </Loading> 
             </div>
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import Book from './Book';
+import React, {Component} from 'react'; 
+import BooksGrid from './BooksGrid';
 import PropTypes from 'prop-types';
 
 class Bookshelf extends Component {
@@ -7,11 +7,11 @@ class Bookshelf extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         bookshelfTitle: PropTypes.string.isRequired,
-        handleBookShelfStateSubmit: PropTypes.func.isRequired
+        handleBookShelfStateUpdate: PropTypes.func.isRequired
     }
 
     updateBookShelfState = (book, shelfState) => {
-        this.props.handleBookShelfStateSubmit(book, shelfState);
+        this.props.handleBookShelfStateUpdate(book, shelfState);
     }
 
     render() {
@@ -22,17 +22,11 @@ class Bookshelf extends Component {
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{bookshelfTitle}</h2>
                 <div className="bookshelf-books">
-                <ol className="books-grid"> 
-                    {books.map((book) => (
-                        <li key={book.id}> 
-                            <Book 
-                                book={book}
-                                updateBookShelfState={this.updateBookShelfState}/>
-                        </li>
-                    ))}
-                </ol>
+                    <BooksGrid 
+                        books={books}
+                        onBookShelfStateChanged={this.updateBookShelfState}/> 
+                </div>
             </div>
-        </div>
         );
     }
 };
