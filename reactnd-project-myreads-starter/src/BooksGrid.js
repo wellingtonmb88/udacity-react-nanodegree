@@ -9,26 +9,31 @@ class BooksGrid extends Component {
         onBookShelfStateChanged: PropTypes.func.isRequired,
         wantToReadList: PropTypes.array,
         currentlyReadingList: PropTypes.array,
-        readList: PropTypes.array 
+        readList: PropTypes.array
     };
 
     state = {
         updatedBooks: []
     };
  
-    updateShelfState = (book, shelfState) => { 
+    updateShelfState = (book, shelfState) => {
         this.props.onBookShelfStateChanged(book, shelfState);
     };
 
-    render() { 
+    render() {
 
-        const { books, wantToReadList, currentlyReadingList, readList } = this.props;  
+        const { 
+            books, 
+            wantToReadList, 
+            currentlyReadingList, 
+            readList 
+        } = this.props;
 
-        return ( 
-            <ol className="books-grid"> 
+        return (
+            <ol className="books-grid">
                     {books.map((book) => (
-                        <li key={book.id}> 
-                            <Book 
+                        <li key={book.id}>
+                            <Book
                                 wantToReadList={wantToReadList}
                                 currentlyReadingList={currentlyReadingList}
                                 readList={readList}
@@ -36,9 +41,9 @@ class BooksGrid extends Component {
                                 onBookShelfStateChanged={this.updateShelfState}/>
                         </li>
                     ))}
-            </ol>           
+            </ol>
         );
-    };
+    }
 };
 
 export default BooksGrid;

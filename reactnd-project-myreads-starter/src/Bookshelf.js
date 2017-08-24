@@ -1,4 +1,4 @@
-import React, {Component} from 'react'; 
+import React, {Component} from 'react';
 import BooksGrid from './BooksGrid';
 import PropTypes from 'prop-types';
 
@@ -16,7 +16,7 @@ class Bookshelf extends Component {
 
     render() {
 
-        const { books, bookshelfTitle } = this.props;  
+        const { books, bookshelfTitle } = this.props;
 
         return (
             <div className="bookshelf">
@@ -24,11 +24,11 @@ class Bookshelf extends Component {
                 <div className="bookshelf-books">
                     <BooksGrid 
                         books={books}
-                        onBookShelfStateChanged={this.updateBookShelfState}/> 
+                        onBookShelfStateChanged={this.updateBookShelfState}/>
                 </div>
             </div>
         );
-    };
+    }
 };
 
 export default Bookshelf;
