@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import BookshelfChanger from './BookshelfChanger';
 import PropTypes from 'prop-types';
- 
-const Loading = require('react-loading-animation');
 
 class Book extends Component {
 
@@ -15,8 +13,7 @@ class Book extends Component {
     };
 
     state = {
-        updatedBook: {},
-        showLoading: true
+        updatedBook: {}
     };
 
     componentDidMount() { 
@@ -48,8 +45,7 @@ class Book extends Component {
             }  
         } 
          
-        this.setState({updatedBook: book});
-        this.setState({showLoading: false});
+        this.setState({updatedBook: book}); 
     };
 
     updateShelfState = (state) => {  
@@ -66,26 +62,24 @@ class Book extends Component {
 
     render() {
 
-        const { updatedBook, showLoading } = this.state; 
+        const { updatedBook } = this.state; 
 
-        return ( 
-            <Loading isLoading={showLoading} width='40px' height='40px' margin="50px 50px">
-                <div className="book">
-                    <div className="book-top">
-                        <div className="book-cover" 
-                                style={{ width: 128, height: 193, backgroundImage: this.getThumbnail(updatedBook) }}/>
-                        <BookshelfChanger  
-                            shelfState={(updatedBook.shelf ? updatedBook.shelf : "none")}
-                            onShelfStateChanged={this.updateShelfState}/>
-                    </div>
-                    <div className="book-title">{updatedBook.title}</div>
-                    { updatedBook.authors ? (updatedBook.authors.map( (author) => (
-                        <div key={author} className="book-authors">{author}</div>
-                        ))
-                    ): (<div />)
-                    }
+        return (  
+            <div className="book">
+                <div className="book-top">
+                    <div className="book-cover" 
+                            style={{ width: 128, height: 193, backgroundImage: this.getThumbnail(updatedBook) }}/>
+                    <BookshelfChanger  
+                        shelfState={(updatedBook.shelf ? updatedBook.shelf : "none")}
+                        onShelfStateChanged={this.updateShelfState}/>
                 </div>
-            </Loading>           
+                <div className="book-title">{updatedBook.title}</div>
+                { updatedBook.authors ? (updatedBook.authors.map( (author) => (
+                    <div key={author} className="book-authors">{author}</div>
+                    ))
+                ): (<div />)
+                }
+            </div>          
         );
     };
 };

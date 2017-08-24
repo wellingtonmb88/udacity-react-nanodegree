@@ -101,7 +101,7 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">  
-                <Loading isLoading={loading} width='100px' height='100px'>
+                <Loading isLoading={loading} width='100px' height='100px' margin='auto' style={{ top: '100px' }} >
                   <div>
                     <If test={currentlyReadingList.length > 0}> 
                       <Bookshelf  
@@ -135,7 +135,7 @@ class BooksApp extends React.Component {
                 onBackPressed={() => history.push("/")}
                 onSearchBooks={this.searchBooks}/>
 
-            <Loading isLoading={showLoadingSearchResult} width='100px' height='100px'>
+            <Loading isLoading={showLoadingSearchResult} width='100px' height='100px' margin='auto' style={{ top: '100px' }} >
               <SearchBooksResults 
                   wantToReadList={wantToReadList}
                   currentlyReadingList={currentlyReadingList}
