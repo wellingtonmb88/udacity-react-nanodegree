@@ -12,7 +12,7 @@ class BookshelfChanger extends Component {
         shelfState : 'none'
     };
 
-    componentDidMount() { 
+    componentWillMount() {  
         this.setState({shelfState: this.props.shelfState}) 
     };
  

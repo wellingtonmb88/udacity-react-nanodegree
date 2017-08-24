@@ -16,12 +16,8 @@ class Book extends Component {
         updatedBook: {}
     };
 
-    componentDidMount() { 
+    componentWillMount() {
         this.updateBook(); 
-    };
-
-    findBook = (book, bookId) => { 
-        return book.id === bookId;
     };
 
     updateBook = () => { 
@@ -32,9 +28,9 @@ class Book extends Component {
         const { book } = this.props;
 
         if(wantToReadList && currentlyReadingList && readList) { 
-            let bookFoundAtWantToRead = wantToReadList.filter((b) => b.id === book.id)[0] //find((b) => this.findBook(b, book.id));
-            let bookFoundAtCurrentlyReading = currentlyReadingList.find((b) => this.findBook(b, book.id));
-            let bookFoundAtRead = readList.find((b) => this.findBook(b, book.id));
+            let bookFoundAtWantToRead = wantToReadList.filter((b) => b.id === book.id)[0];
+            let bookFoundAtCurrentlyReading = currentlyReadingList.filter((b) => b.id === book.id)[0];
+            let bookFoundAtRead = readList.filter((b) => b.id === book.id)[0];
 
             if(bookFoundAtWantToRead) {
                 book.shelf = bookFoundAtWantToRead.shelf;
@@ -70,7 +66,7 @@ class Book extends Component {
                     <div className="book-cover" 
                             style={{ width: 128, height: 193, backgroundImage: this.getThumbnail(updatedBook) }}/>
                     <BookshelfChanger  
-                        shelfState={(updatedBook.shelf ? updatedBook.shelf : "none")}
+                        shelfState={(updatedBook.shelf ? updatedBook.shelf : "none" )}
                         onShelfStateChanged={this.updateShelfState}/>
                 </div>
                 <div className="book-title">{updatedBook.title}</div>
