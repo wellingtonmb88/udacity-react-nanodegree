@@ -1,43 +1,62 @@
 import React, {Component} from 'react';
 import BookshelfChanger from './BookshelfChanger';
 import PropTypes from 'prop-types';
-import * as BooksAPI from './BooksAPI'
-import * as CancelablePromise from './CancelablePromise'
  
+const Loading = require('react-loading-animation');
 
 class Book extends Component {
 
     static propTypes = {
         book: PropTypes.object.isRequired,
-        onBookShelfStateChanged: PropTypes.func.isRequired
-    }
+        onBookShelfStateChanged: PropTypes.func.isRequired,
+        wantToReadList: PropTypes.array,
+        currentlyReadingList: PropTypes.array,
+        readList: PropTypes.array 
+    };
 
     state = {
-        updatedBook: {}
-    }
+        updatedBook: {},
+        showLoading: true
+    };
 
-    cancelablePromise = CancelablePromise.createCancelablePromise (BooksAPI.get(this.props.book.id));
+    componentDidMount() { 
+        this.updateBook(); 
+    };
 
-    componentDidMount() {  
-        const isCanceled = this.cancelablePromise.isCanceled;
-        if(!isCanceled) {
-            this.cancelablePromise.promise
-            .then((book) => {  
-                this.setState({updatedBook: book})  
-            })
-            .catch((reason) => console.log('isCanceled', reason.isCanceled))
-        }
-    }; 
+    findBook = (book, bookId) => { 
+        return book.id === bookId;
+    };
 
-    componentWillUnmount() {
-        this.cancelablePromise.cancel();
-    }
+    updateBook = () => { 
+        const wantToReadList = this.props.wantToReadList;
+        const currentlyReadingList = this.props.currentlyReadingList;
+        const readList = this.props.readList;
+ 
+        const { book } = this.props;
 
-    updateShelfState = (state) => { 
+        if(wantToReadList && currentlyReadingList && readList) { 
+            let bookFoundAtWantToRead = wantToReadList.filter((b) => b.id === book.id)[0] //find((b) => this.findBook(b, book.id));
+            let bookFoundAtCurrentlyReading = currentlyReadingList.find((b) => this.findBook(b, book.id));
+            let bookFoundAtRead = readList.find((b) => this.findBook(b, book.id));
+
+            if(bookFoundAtWantToRead) {
+                book.shelf = bookFoundAtWantToRead.shelf;
+            } else if(bookFoundAtCurrentlyReading) {
+                book.shelf = bookFoundAtCurrentlyReading.shelf; 
+            } else if(bookFoundAtRead) {
+                book.shelf = bookFoundAtRead.shelf; 
+            }  
+        } 
+         
+        this.setState({updatedBook: book});
+        this.setState({showLoading: false});
+    };
+
+    updateShelfState = (state) => {  
         this.props.onBookShelfStateChanged(this.state.updatedBook, state);
     };
 
-    getThumbnail = (book) => {
+    getThumbnail = (book) => { 
         if(book.imageLinks && book.imageLinks.thumbnail) {
             return `url("${book.imageLinks.thumbnail}")`
         } else { 
@@ -47,26 +66,28 @@ class Book extends Component {
 
     render() {
 
-        const { updatedBook } = this.state; 
+        const { updatedBook, showLoading } = this.state; 
 
         return ( 
-            <div className="book">
-                <div className="book-top">
-                    <div className="book-cover" 
-                            style={{ width: 128, height: 193, backgroundImage: this.getThumbnail(updatedBook) }}/>
-                    <BookshelfChanger  
-                        shelfState={(updatedBook.shelf ? updatedBook.shelf : "none")}
-                        onShelfStateChanged={this.updateShelfState}/>
+            <Loading isLoading={showLoading} width='40px' height='40px' margin="50px 50px">
+                <div className="book">
+                    <div className="book-top">
+                        <div className="book-cover" 
+                                style={{ width: 128, height: 193, backgroundImage: this.getThumbnail(updatedBook) }}/>
+                        <BookshelfChanger  
+                            shelfState={(updatedBook.shelf ? updatedBook.shelf : "none")}
+                            onShelfStateChanged={this.updateShelfState}/>
+                    </div>
+                    <div className="book-title">{updatedBook.title}</div>
+                    { updatedBook.authors ? (updatedBook.authors.map( (author) => (
+                        <div key={author} className="book-authors">{author}</div>
+                        ))
+                    ): (<div />)
+                    }
                 </div>
-                <div className="book-title">{updatedBook.title}</div>
-                { updatedBook.authors ? (updatedBook.authors.map( (author) => (
-                    <div key={author} className="book-authors">{author}</div>
-                    ))
-                ): (<div />)
-                }
-            </div>             
+            </Loading>           
         );
-    }
+    };
 };
 
 export default Book;

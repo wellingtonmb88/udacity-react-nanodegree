@@ -6,22 +6,20 @@ class BookshelfChanger extends Component {
     static propTypes = { 
         shelfState: PropTypes.string.isRequired,
         onShelfStateChanged: PropTypes.func.isRequired
-    }
+    };
 
     state = {
         shelfState : 'none'
-    }
+    };
 
-    componentWillReceiveProps(nextProps) {  
-        if(nextProps.shelfState !== this.state.shelfState) { 
-            this.setState({shelfState: nextProps.shelfState})
-        }  
-    } 
+    componentDidMount() { 
+        this.setState({shelfState: this.props.shelfState}) 
+    };
  
-    change = (event) => {
+    change = (event) => { 
         this.setState({shelfState: event.target.value});
         this.props.onShelfStateChanged(event.target.value)
-    }
+    };
  
     render(){
         const { shelfState } = this.state
@@ -36,7 +34,7 @@ class BookshelfChanger extends Component {
                 </select>
             </div>                
         );
-    }
+    };
 };
 
 export default BookshelfChanger;

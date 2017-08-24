@@ -8,15 +8,15 @@ class Bookshelf extends Component {
         books: PropTypes.array.isRequired,
         bookshelfTitle: PropTypes.string.isRequired,
         handleBookShelfStateUpdate: PropTypes.func.isRequired
-    }
+    };
 
     updateBookShelfState = (book, shelfState) => {
         this.props.handleBookShelfStateUpdate(book, shelfState);
-    }
+    };
 
     render() {
 
-        const { books, bookshelfTitle } = this.props;
+        const { books, bookshelfTitle } = this.props;  
 
         return (
             <div className="bookshelf">
@@ -28,7 +28,7 @@ class Bookshelf extends Component {
                 </div>
             </div>
         );
-    }
+    };
 };
 
 export default Bookshelf;

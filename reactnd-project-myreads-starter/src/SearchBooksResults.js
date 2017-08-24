@@ -6,26 +6,31 @@ class SearchBooksResults extends Component {
 
     static propTypes = {
         books: PropTypes.array.isRequired,
-        handleBookUpdate: PropTypes.func.isRequired
+        handleBookUpdate: PropTypes.func.isRequired,
+        wantToReadList: PropTypes.array,
+        currentlyReadingList: PropTypes.array,
+        readList: PropTypes.array
     };
 
     updateBookShelfState = (book, shelfState) => {
-        console.log(shelfState)
         this.props.handleBookUpdate(book, shelfState)
     };
 
     render() {
 
-        const { books } = this.props;  
+        const { books, wantToReadList, currentlyReadingList, readList } = this.props; 
 
         return (
             <div className="search-books-results">
             <BooksGrid 
+                    wantToReadList={wantToReadList}
+                    currentlyReadingList={currentlyReadingList}
+                    readList={readList}
                     books={books}
                     onBookShelfStateChanged={this.updateBookShelfState}/>
             </div> 
         );
-    }
+    };
 };
 
 export default SearchBooksResults;
