@@ -11,11 +11,7 @@ class BooksGrid extends Component {
         currentlyReadingList: PropTypes.array,
         readList: PropTypes.array
     };
-
-    state = {
-        updatedBooks: []
-    };
- 
+    
     updateShelfState = (book, shelfState) => {
         this.props.onBookShelfStateChanged(book, shelfState);
     };
@@ -31,16 +27,16 @@ class BooksGrid extends Component {
 
         return (
             <ol className="books-grid">
-                    {books.map((book) => (
-                        <li key={book.id}>
-                            <Book
-                                wantToReadList={wantToReadList}
-                                currentlyReadingList={currentlyReadingList}
-                                readList={readList}
-                                book={book}
-                                onBookShelfStateChanged={this.updateShelfState}/>
-                        </li>
-                    ))}
+                {books.map((book) => (
+                    <li key={book.id}>
+                        <Book
+                            wantToReadList={wantToReadList}
+                            currentlyReadingList={currentlyReadingList}
+                            readList={readList}
+                            book={book}
+                            onBookShelfStateChanged={this.updateShelfState}/>
+                    </li>
+                ))}
             </ol>
         );
     }

@@ -30,10 +30,11 @@ class SearchBooksBar extends Component {
         <div className="search-books-bar">
           <a className="close-search" onClick={() => this.props.onBackPressed()}>Close</a>
           <div className="search-books-input-wrapper">
-            <input  type="text"
-                    placeholder="Search by title or author"
-                    value={query}
-                    onChange={(event) => this.updateQuery(event.target.value)}/>
+            <input  
+              type="text"
+              placeholder="Search by title or author"
+              value={query}
+              onChange={(event) => this.updateQuery(event.target.value)}/>
           </div>
         </div>
     );

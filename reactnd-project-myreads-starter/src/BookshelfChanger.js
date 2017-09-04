@@ -7,14 +7,6 @@ class BookshelfChanger extends Component {
         shelfState: PropTypes.string.isRequired,
         onShelfStateChanged: PropTypes.func.isRequired
     };
-
-    state = {
-        shelfState : 'none'
-    };
-
-    componentWillMount() {
-        this.setState({shelfState: this.props.shelfState});
-    };
  
     change = (event) => {
         this.setState({shelfState: event.target.value});
@@ -22,7 +14,7 @@ class BookshelfChanger extends Component {
     };
  
     render() {
-        const { shelfState } = this.state
+        const { shelfState } = this.props
         return (
             <div className="book-shelf-changer">
                 <select onChange={this.change} value={shelfState}>

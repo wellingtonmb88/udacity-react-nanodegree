@@ -27,7 +27,7 @@ class SearchBooksResults extends Component {
 
         return (
             <div className="search-books-results">
-            <BooksGrid
+                <BooksGrid
                     wantToReadList={wantToReadList}
                     currentlyReadingList={currentlyReadingList}
                     readList={readList}
