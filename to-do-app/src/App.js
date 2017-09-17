@@ -63,7 +63,8 @@ class App extends Component {
         <div className="App-container">
           <div className="App-lists">
             {colummns.map(item => 
-              <ColumnList 
+              <ColumnList
+                key={item.title}
                 title={item.title}
                 items={item.items}
                 addTask={this.addTask}

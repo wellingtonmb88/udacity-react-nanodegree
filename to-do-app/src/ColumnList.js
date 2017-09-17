@@ -2,7 +2,7 @@ import React from 'react';
 import If from './If.js';
 
 const ColumnList = ({ title, items, addTask, updateTask }) => {
-const currentItems = items.filter(_ => _.status === title); 
+const currentItems = items.filter(_ => _.status === title);
 
     return (
         <div className="column-list">
@@ -29,6 +29,10 @@ const currentItems = items.filter(_ => _.status === title);
             </ul>
         </div> 
     );
+};
+
+ColumnList.defaultProps = {
+  items: []
 };
 
 export default ColumnList;
