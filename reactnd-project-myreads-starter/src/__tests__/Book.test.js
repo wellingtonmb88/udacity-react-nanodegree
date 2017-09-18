@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow , mount} from "enzyme";
 import Book from "../Book";
-import BookshelfChanger from "../BookshelfChanger";
 
 const sinon = require('sinon');
 
@@ -70,8 +69,7 @@ it("renders with Read", () => {
 
 it("executing onShelfStateChanged", () => { 
     const onParentClick = sinon.spy();
-    const wrapper = shallow(
-                            <Book
+    const wrapper = mount(<Book
                                 book={bookRead} 
                                 onBookShelfStateChanged={onParentClick}
                                 wantToReadList={wantToReadList}

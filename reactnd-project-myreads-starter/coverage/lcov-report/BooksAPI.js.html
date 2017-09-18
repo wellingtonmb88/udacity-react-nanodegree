@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">42.86% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/21</span>
+        <span class='fraction'>9/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">42.86% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/21</span>
+        <span class='fraction'>9/21</span>
       </div>
     </div>
   </div>
@@ -87,41 +87,32 @@
 42
 43
 44
-45</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+45
+46</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -130,32 +121,43 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ></span>
-const api = <span class="cstat-no" title="statement not covered" >"https://reactnd-books-api.udacity.com"</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+const api = "https://reactnd-books-api.udacity.com"
 &nbsp;
 &nbsp;
 // Generate a unique token for storing your bookshelf data on the backend server.
-let token = <span class="cstat-no" title="statement not covered" >localStorage.token</span>
-<span class="cstat-no" title="statement not covered" >if (!token)</span>
+let token = localStorage.token
+<span class="missing-if-branch" title="if path not taken" >I</span>if (!token)
 <span class="cstat-no" title="statement not covered" >  token = localStorage.token = Math.random().toString(36).substr(-8)</span>
 &nbsp;
-const headers = <span class="cstat-no" title="statement not covered" >{</span>
+const headers = {
   'Accept': 'application/json',
   'Authorization': token
 }
 &nbsp;
-export const get = (bookId) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+export const get = <span class="fstat-no" title="function not covered" >(b</span>ookId) =&gt;
 <span class="cstat-no" title="statement not covered" >  fetch(`${api}/books/${bookId}`, { headers })</span>
-    .<span class="fstat-no" title="function not covered" >th</span>en(re<span class="cstat-no" title="statement not covered" >s =&gt; res.js</span>on())
-    .<span class="fstat-no" title="function not covered" >th</span>en(dat<span class="cstat-no" title="statement not covered" >a =&gt; data.</span>book)
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >da</span>ta =&gt; <span class="cstat-no" title="statement not covered" >data.book)</span>
 &nbsp;
-export const getAll = () =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+export const getAll = <span class="fstat-no" title="function not covered" >()</span> =&gt;
 <span class="cstat-no" title="statement not covered" >  fetch(`${api}/books`, { headers })</span>
-    .<span class="fstat-no" title="function not covered" >th</span>en(re<span class="cstat-no" title="statement not covered" >s =&gt; res.js</span>on())
-    .<span class="fstat-no" title="function not covered" >th</span>en(dat<span class="cstat-no" title="statement not covered" >a =&gt; data.b</span>ooks)
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >da</span>ta =&gt; <span class="cstat-no" title="statement not covered" >data.books)</span>
 &nbsp;
-export const update = (book, shelf) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+export const update = <span class="fstat-no" title="function not covered" >(b</span>ook, shelf) =&gt;
 <span class="cstat-no" title="statement not covered" >  fetch(`${api}/books/${book.id}`, {</span>
     method: 'PUT',
     headers: {
@@ -163,9 +165,10 @@ export const update = (book, shelf) =&gt;<span class="cstat-no" title="statement
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ shelf })
-  }).<span class="fstat-no" title="function not covered" >th</span>en(re<span class="cstat-no" title="statement not covered" >s =&gt; res.js</span>on())
+  }).then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
 &nbsp;
-export const search = (query, maxResults)<span class="cstat-no" title="statement not covered" > =&gt;<span class="fstat-no" title="function not covered" ></span></span>
+  const books = [];
+export const search = <span class="fstat-no" title="function not covered" >(q</span>uery, maxResults) =&gt;
 <span class="cstat-no" title="statement not covered" >  fetch(`${api}/search`, {</span>
     method: 'POST',
     headers: {
@@ -173,15 +176,15 @@ export const search = (query, maxResults)<span class="cstat-no" title="statement
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ query, maxResults })
-  }).<span class="fstat-no" title="function not covered" >th</span>en(re<span class="cstat-no" title="statement not covered" >s =&gt; res.js</span>on())
-    .<span class="fstat-no" title="function not covered" >th</span>en(dat<span class="cstat-no" title="statement not covered" >a =&gt; data.b</span>ooks)
+  }).then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >da</span>ta =&gt; <span class="cstat-no" title="statement not covered" >data.books)</span>
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Sep 17 2017 14:00:50 GMT-0300 (-03)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Sep 17 2017 23:48:45 GMT-0300 (-03)
 </div>
 </div>
 <script src="prettify.js"></script>

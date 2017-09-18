@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 class SearchBooksBar extends Component {
   
   static propTypes = {
-    onSearchBooks: PropTypes.func.isRequired
+    onSearchBooks: PropTypes.func.isRequired,
+    onBackPressed: PropTypes.func
   };
 
   state = {
@@ -16,10 +17,6 @@ class SearchBooksBar extends Component {
     if(query) {
       this.props.onSearchBooks(query);
     }
-  };
-
-  clearQuery = () => {
-      this.setState({query: ''});
   };
 
   render() {

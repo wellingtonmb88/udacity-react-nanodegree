@@ -64,12 +64,12 @@ class SearchBooks extends React.Component {
                     height='100px' 
                     margin='auto' 
                     style={{ top: '100px' }} >
-                <SearchBooksResults
-                    wantToReadList={wantToReadList}
-                    currentlyReadingList={currentlyReadingList}
-                    readList={readList}
-                    books={searchedBooks}
-                    handleBookUpdate={this.handleBookShelfStateUpdate}/>
+                    <SearchBooksResults
+                        wantToReadList={wantToReadList}
+                        currentlyReadingList={currentlyReadingList}
+                        readList={readList}
+                        books={searchedBooks}
+                        handleBookUpdate={this.handleBookShelfStateUpdate}/>
                 </Loading>
             </div>
         );

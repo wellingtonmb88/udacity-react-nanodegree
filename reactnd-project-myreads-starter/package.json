@@ -11,9 +11,12 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "babel-jest": "^21.0.2",
     "enzyme": "^2.9.1",
-    "react-scripts": "0.9.5",
-    "react-test-renderer": "^15.6.1"
+    "jest-fetch-mock": "^1.2.1",
+    "react-scripts": "1.0.11",
+    "react-test-renderer": "^15.6.1",
+    "regenerator-runtime": "^0.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,7 +27,8 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!src/index.js"
+      "!src/index.js",
+      "!src/MockBooks.js"
     ]
   }
 }

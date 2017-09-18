@@ -27,7 +27,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/7</span>
       </div>
     </div>
   </div>
@@ -83,30 +83,24 @@
 38
 39
 40
-41
-42
-43
-44</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+41</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,28 +123,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {Component} from 'react';<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span>
-import PropTypes from 'prop-types';<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 &nbsp;
 class SearchBooksBar extends Component {
   
   static propTypes = {
-    onSearchBooks: PropTypes.func.isRequired
+    onSearchBooks: PropTypes.func.isRequired,
+    onBackPressed: PropTypes.func
   };
 &nbsp;
   state = {
       query : ''
   };
 &nbsp;
-  updateQuery = (query) =&gt; {
-    this.setState({ query});
-    if(query) {
-      this.props.onSearchBooks(query);
+  updateQuery = <span class="fstat-no" title="function not covered" >(q</span>uery) =&gt; {
+<span class="cstat-no" title="statement not covered" >    this.setState({ query});</span>
+<span class="cstat-no" title="statement not covered" >    if(query) {</span>
+<span class="cstat-no" title="statement not covered" >      this.props.onSearchBooks(query);</span>
     }
-  };
-&nbsp;
-  clearQuery = () =&gt; {
-      this.setState({query: ''});
   };
 &nbsp;
 <span class="fstat-no" title="function not covered" >  re</span>nder() {
@@ -159,13 +150,13 @@ class SearchBooksBar extends Component {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return (  </span>
         &lt;div className="search-books-bar"&gt;
-          &lt;a className="close-search" onClick={() =&gt; this.props.onBackPressed()}&gt;Close&lt;/a&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+          &lt;a className="close-search" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.props.onBackPressed()}</span>&gt;Close&lt;/a&gt;
           &lt;div className="search-books-input-wrapper"&gt;
             &lt;input  
               type="text"
               placeholder="Search by title or author"
               value={query}
-              onChange<span class="fstat-no" title="function not covered" >={</span>(event)<span class="cstat-no" title="statement not covered" > =&gt; this.updateQuery(event.target.val</span>ue)}/&gt;
+              onChange={<span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; <span class="cstat-no" title="statement not covered" >this.updateQuery(event.target.value)}</span>/&gt;
           &lt;/div&gt;
         &lt;/div&gt;
     );
@@ -178,7 +169,7 @@ export default SearchBooksBar;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Sep 17 2017 14:00:50 GMT-0300 (-03)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Sep 17 2017 23:48:45 GMT-0300 (-03)
 </div>
 </div>
 <script src="prettify.js"></script>
